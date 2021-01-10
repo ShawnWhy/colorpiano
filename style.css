@@ -1,1 +1,144 @@
+.all-container{
+    text-align:center;
+    position:relative;
+    z-index:1
 
+
+}
+
+.strip-container{
+    width:50%;
+    margin:auto;
+    height:10%;
+    border:4px lightsalmon solid;
+    border-radius:10px;
+    margin-top:5%;
+    overflow: hidden;
+}
+.nameform{
+    width:50%;
+    margin:auto;
+    position:relative;
+    
+   
+}
+.piano-container{
+    width:50%;
+    margin:auto;
+    border:4px lightsalmon solid;
+    border-radius:10px;
+    height:50%;
+    position:relative;
+    
+}
+.piano-container:focus{
+    background-color:lightskyblue;
+}
+.piano-container:hover{
+    transform:scaleX(1.01)
+}
+
+
+.key{
+    width:14%;
+    height:10%;
+    float:left;
+    position: relative;
+    bottom:-80%;
+    left:1%;
+    text-align:center;
+}
+
+.strip{
+    width:5%;
+    height:100%;
+    float:left
+
+
+}
+
+.invisibleP{
+    display:none
+}
+
+.tallkey{
+transform-origin: bottom;
+animation:tallkey .5s ease both
+
+}
+
+@keyframes tallkey {
+    0%{transform: scaleY(1);}
+   25%{transform: scaleY(11);}
+   50%{transform: scaleY(8);}
+   75%{transform: scaleY(3);}
+  100%{transform: scaleY(1);}
+}
+
+.keypad{
+    height:20px;
+    width:50%;
+    border-radius:5px;
+    background-color:linen;
+    text-align:center;
+    margin:auto;
+    position:relative;
+    top:10%;
+}
+
+input[type='submit']{
+    background-color:mediumslateblue;
+    border-radius:5px;  
+    color:rgb(245, 225, 187)
+}
+.reset{
+    width:50%;
+    margin:auto;
+    margin-top:1%;
+}
+
+.decorate{
+    width:50%;
+    margin:auto;
+    margin-top:1%;
+    background-color:rgb(179, 99, 2);
+    color:rgb(135, 250, 235)
+}
+
+.barleft{
+    height:100%;
+    width:5%;
+    position:fixed;
+    z-index:2;
+    /* background-color:blue */
+}
+.barleft-center{
+    height:100%;
+    width:5%;
+    position:fixed;
+    left:15%;
+    z-index:2;
+    /* background-color:blue */
+}
+
+.barright-center{
+    height:100%;
+    width:5%;
+    position:fixed;
+    left:80%;
+    z-index:2;
+    /* background-color:blue */
+}
+
+.barright{
+    height:100%;
+    width:5%;
+    position:fixed;
+    left:95%;
+    z-index:2;
+    /* background-color:blue */
+}
+
+.barpiece{
+    height:5%;
+}
