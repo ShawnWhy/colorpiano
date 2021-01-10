@@ -1,5 +1,30 @@
 
+
+
+var demoColors=
+[   "#186B18",
+    "#B1AA15",
+    "#81DA72",
+    "#7B105A",
+    "#E9AFBF",
+    "#87A939",
+    "#30C932",
+    "#30C932",
+    "#87A939",
+    "#E9AFBF",
+    "#7B105A",
+    "#81DA72",
+    "#B1AA15",
+    "#186B18",
+    "#81DA72",
+    "#7B105A",
+    "#E9AFBF",
+    "#87A939",
+    "#B1AA15",
+    "#81DA72"
+  ]
 //
+var username=''
 var numOfTabs = 0
 var name = '';
 var Decorcolors=[]
@@ -87,31 +112,35 @@ $(".piano-container").keypress( event=>{
 
 })
 
-// $('.piano-container').on('mousedown', event=>{
-//     event.stopPropagation();
-//     event.preventDefault();
-//     $('.piano-container').attr('style','transform:scaleX(1.1)')
+function coloredText (name, colorArray){
+    var numRange=colorArray.length;
+    var welcomeMessage='welcome, '+name+' please click on the large box to begin'
+    var welcomeMessageArray= welcomeMessage.split('');
+    for (i=0; i<welcomeMessageArray.length;i++){
+        var div = $("<div>");
+        $(div).html(welcomeMessageArray[i])
+        var newIndex= Math.floor(Math.random() * numRange)
+        $(div).attr("style","color:"+colorArray[newIndex])
+        $(div).addClass('displayName');
+        $(".name-display").append(div);
+        }
+        $('.name-display').removeClass('invisibleP');
+        $('.colorssubmit').removeClass('invisibleP')
+        // $('form').addClass('invisibleP')
+    }
 
-// })
-// $('.piano-container').on('mouseup', event=>{
-//     event.stopPropagation();
-//     event.preventDefault();
-//     $('.piano-container').attr('style','transform:scaleX(1)')
 
-// })
 
 $('.namesubmit').on("click", event=>{
     event.preventDefault();
     event.stopPropagation();
     if($('.nameinput').val().length>0){
-    var name= $('.nameinput').val()
-    var welcomeMessage='welcome '+name+' please click on the large box to begin'
-    $('.name-display').html(welcomeMessage)
-    $('.name-display').removeClass('invisibleP');
-    $('.colorssubmit').removeClass('invisibleP')
-    $('form').addClass('invisibleP')
-
+        $('.name-display').html('')
+        var name= $('.nameinput').val()
+        username=name
+        coloredText(name, demoColors)
     }
+    
 })
 
 $('.reset').on('click', event=>{
@@ -180,6 +209,12 @@ function decorate(){
                   var newIndex= Math.floor(Math.random() * numRange);
                   $('body').attr('style','background-color:'+Decorcolors[newIndex])
                   
+                  if (username.length>0){
+                    $('.name-display').html('')
+
+                    coloredText(username, Decorcolors)
+
+                  }
                 
          }
 }
@@ -190,3 +225,18 @@ $('.decorate').on("click", event=>{
     decorate();
 
 })
+
+
+
+// $('.piano-container').on('mousedown', event=>{
+//     event.stopPropagation();
+//     event.preventDefault();
+//     $('.piano-container').attr('style','transform:scaleX(1.1)')
+
+// })
+// $('.piano-container').on('mouseup', event=>{
+//     event.stopPropagation();
+//     event.preventDefault();
+//     $('.piano-container').attr('style','transform:scaleX(1)')
+
+// })
