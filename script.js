@@ -220,6 +220,7 @@ $('.colorssubmit').on('click', event=>{
     event.preventDefault();
     event.stopPropagation();
     console.log(username);
+    Decorcolors=[]
     var strip = $('.strip-container').children();
     if(username.length >0 && strip.length>0){
         for(i=0; i<strip.length;i++){
@@ -243,10 +244,22 @@ $('.namesubmit').on("click", event=>{
         $('.name-display').html('')
         var name= $('.nameinput').val()
         username=name
-        coloredText(name, demoColors)
+        getUser(name);
     }
     
 })
+function createUser(A, B){ 
+    $.ajax({
+type: "POST",
+url: './create-query.php',
+dataType: 'json',
+data: {username:A, colors:B},
+
+success: function (obj, textstatus) {
+    console.log('textstatus')
+    }})           
+}
+
 function userUpdate(A, B){ 
     $.ajax({
 type: "POST",
@@ -255,42 +268,42 @@ dataType: 'json',
 data: {username:A, colors:B},
 
 success: function (obj, textstatus) {
-              if( !('error' in obj) ) {
-                  yourVariable = obj.result;
-                    }
-              else {
-                  console.log(obj.error);
-              }}});}
+    console.log(textstatus);
+            }
+        })
+    }
 
-function userUpdate(A, B){ 
-    $.ajax({
-type: "POST",
-url: './post-query.php',
-dataType: 'json',
-data: {username:A, colors:B},
+function fillUserTabs(colors){
+    $('.strip-container').html('');
+    for(i=0; i<colors.length; i++ ){
+        createTab(colors[i])
+    }
 
-success: function (obj, textstatus) {
-              if( !('error' in obj) ) {
-                  yourVariable = obj.result;
-                    }
-              else {
-                  console.log(obj.error);
-              }}});}
+}
 
-function GetUser(A, B){ 
+function getUser(A){ 
     $.ajax({
 type: "GET",
-url: './post-query.php',
-dataType: 'json',
-data: {username:A},
+url: './get-query.php',
+// dataType: 'json',
+data: {username:A,},
 
 success: function (obj, textstatus) {
-              if( !('error' in obj) ) {
-                  userInfo = obj.result;
 
-                    }
-              else {
-                  console.log(obj.error);
-                  createUser()
-              }}});}
+                console.log(textstatus)
+                console.log(obj)
+                if(obj){
+                     newcolors=obj.split(',');
+                    coloredText(username, newcolors)
+                    fillUserTabs(newcolors)}
+                else{console.log('createnew')
+                    coloredText(username,demoColors)
+                    var newdemocolors = demoColors.toString();
+                     createUser(username,newdemocolors)
+
+                }
+
+
+}});}
+
 
