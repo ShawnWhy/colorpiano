@@ -131,17 +131,7 @@ function coloredText (name, colorArray){
 
 
 
-$('.namesubmit').on("click", event=>{
-    event.preventDefault();
-    event.stopPropagation();
-    if($('.nameinput').val().length>0){
-        $('.name-display').html('')
-        var name= $('.nameinput').val()
-        username=name
-        coloredText(name, demoColors)
-    }
-    
-})
+
 
 $('.reset').on('click', event=>{
     event.preventDefault();
@@ -158,16 +148,15 @@ function decorate(){
     $('.barleft-center').html('')
     Decorcolors=[]
     var strip = $('.strip-container').children();
-    if(strip.length>0){
-        for(i=0; i<strip.length;i++){
+            for(i=0; i<strip.length;i++){
             var tabcolor=$(strip[i]).attr('style')
             var tabcolorarray= tabcolor.split(":");
             tabcolor=tabcolorarray[1];
             Decorcolors.push(tabcolor);
-            console.log('decorcolors')
-            console.log(Decorcolors);
+            // console.log('decorcolors')
+            // console.log(Decorcolors);
         }
-        }
+        
         if(Decorcolors.length===strip.length){
             for(i=0; i<20;i++){
                    numRange = Decorcolors.length-1
@@ -227,16 +216,81 @@ $('.decorate').on("click", event=>{
 })
 
 
+$('.colorssubmit').on('click', event=>{
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(username);
+    var strip = $('.strip-container').children();
+    if(username.length >0 && strip.length>0){
+        for(i=0; i<strip.length;i++){
+            var tabcolor=$(strip[i]).attr('style')
+            var tabcolorarray= tabcolor.split(":");
+            tabcolor=tabcolorarray[1];
+            Decorcolors.push(tabcolor);
+            colorstring=Decorcolors.toString();
+        }
+    }
+    console.log(colorstring)
 
-// $('.piano-container').on('mousedown', event=>{
-//     event.stopPropagation();
-//     event.preventDefault();
-//     $('.piano-container').attr('style','transform:scaleX(1.1)')
+    userUpdate(username, colorstring)
 
-// })
-// $('.piano-container').on('mouseup', event=>{
-//     event.stopPropagation();
-//     event.preventDefault();
-//     $('.piano-container').attr('style','transform:scaleX(1)')
+})
 
-// })
+$('.namesubmit').on("click", event=>{
+    event.preventDefault();
+    event.stopPropagation();
+    if($('.nameinput').val().length>0){
+        $('.name-display').html('')
+        var name= $('.nameinput').val()
+        username=name
+        coloredText(name, demoColors)
+    }
+    
+})
+function userUpdate(A, B){ 
+    $.ajax({
+type: "POST",
+url: './post-query.php',
+dataType: 'json',
+data: {username:A, colors:B},
+
+success: function (obj, textstatus) {
+              if( !('error' in obj) ) {
+                  yourVariable = obj.result;
+                    }
+              else {
+                  console.log(obj.error);
+              }}});}
+
+function userUpdate(A, B){ 
+    $.ajax({
+type: "POST",
+url: './post-query.php',
+dataType: 'json',
+data: {username:A, colors:B},
+
+success: function (obj, textstatus) {
+              if( !('error' in obj) ) {
+                  yourVariable = obj.result;
+                    }
+              else {
+                  console.log(obj.error);
+              }}});}
+
+function GetUser(A, B){ 
+    $.ajax({
+type: "GET",
+url: './post-query.php',
+dataType: 'json',
+data: {username:A},
+
+success: function (obj, textstatus) {
+              if( !('error' in obj) ) {
+                  userInfo = obj.result;
+
+                    }
+              else {
+                  console.log(obj.error);
+                  createUser()
+              }}});}
+
