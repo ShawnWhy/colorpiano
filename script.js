@@ -307,3 +307,44 @@ success: function (obj, textstatus) {
 }});}
 
 
+//onclick events for the piano keys
+$('.key').on('click', event=>{
+    event.stopPropagation();
+    event.preventDefault();
+    // console.log(pianoKey)
+        // console.log('keys!')
+        $(event.target).children().addClass("invisibleP")
+        $(event.target).addClass("tallkey");
+        setTimeout(() => {
+        $(event.target).removeClass("tallkey");
+        $(event.target).children().removeClass("invisibleP")
+            
+        },500);
+        var color=$(event.target).attr('style')
+        // console.log(color)
+        var colorArray=color.split(":");
+        color=colorArray[1] 
+        // console.log(color)
+        createTab(color)
+
+    })
+//onclick events for the piano keys pads to trigget parent
+$('.keypad').on('click', event=>{
+    event.stopPropagation();
+    event.preventDefault();
+    var key = $(event.target).parent();
+    $(key).children().addClass("invisibleP")
+    $(key).addClass("tallkey");
+    setTimeout(() => {
+    $(key).removeClass("tallkey");
+    $(key).children().removeClass("invisibleP")
+        
+    },500);
+    var color=$(key).attr('style')
+    // console.log(color)
+    var colorArray=color.split(":");
+    color=colorArray[1] 
+    // console.log(color)
+    createTab(color)
+
+})
