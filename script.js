@@ -118,6 +118,8 @@ $(".piano-container").keypress( event=>{
 })
 
 function coloredText (name, colorArray){
+
+    $(".name-display").html('');
     var numRange=colorArray.length;
     var welcomeMessage='welcome, '+name+' please click on the large box to begin'
     var welcomeMessageArray= welcomeMessage.split('');
