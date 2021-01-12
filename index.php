@@ -8,7 +8,7 @@ $database='vrkysse652pm2xvs';
    
  $con = mysqli_connect($server, $user, $pass, $database)
   or die ("connection Failed");
- echo "connection succeeded";
+//  echo "connection succeeded";
 
  if(mysqli_connect_errno()){
     $msg="database connection failed";
