@@ -47,7 +47,7 @@ $database='vrkysse652pm2xvs';
         </div>
         <div class="piano-container" tabindex="1">
             <div>press enter to delete</div>
-            <div>please press the letters present on teh keys</div>
+            <div>please press the letters present on the keys, or click</div>
             <div class="key z"><div class='keypad'>z</div></div>
             <div class="key x"><div class='keypad'>x</div></div>
             <div class="key c"><div class='keypad'>c</div></div>
