@@ -1,6 +1,6 @@
 
 
-
+//default colors for the greeting space
 var demoColors=
 [   "#186B18",
     "#B1AA15",
@@ -23,7 +23,7 @@ var demoColors=
     "#B1AA15",
     "#81DA72"
   ]
-//
+//global variables
 var username=''
 var numOfTabs = 0
 var name = '';
@@ -31,6 +31,7 @@ var Decorcolors=[]
 var keys=['z','x','c','v','b','n','m']
 var colors=[]
 
+//sets everything to blank, as well as the cached color info
 function reset(){
     for(i=0; i<keys.length; i++){
         var letters = '0123456789ABCDEF';
@@ -66,11 +67,15 @@ function removeLaststrip(){
 
 //creates the added color tabs after keypress
 function createTab(color){
+    var strip = $('.strip-container').children();
+    if (strip.length<20){
+
     var tab=$('<div>');
     $(tab).addClass('strip')
     $(tab).attr("style",'background-color:'+color);
     colors.push(color);
     $('.strip-container').append(tab);
+    }
 }
 //creates the randomly generated background colors for the keys
 for(i=0; i<keys.length; i++){
